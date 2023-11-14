@@ -1,0 +1,61 @@
+<!-- Selecionar Voz <select id="voiceList"></select><br><br> -->
+<p id="teste">
+    Data Transfer Object (DTO) é um padrão de arquitetura de dados, cujo objetivo é encapsular um conjunto de dados em um objeto que não contém lógica, apenas o armazenamento desses dados. Esse padrão é muito utilizado quando queremos transportar dados entre diversas camadas da aplicação.
+    Como exemplo, usaremos a linguagem PHP.
+    Imagine que você criou um Repository com um método que vai salvar dados de uma determinada cidade no banco de dados.
+</p>
+
+<button id="btnSpeak">Falar</button>
+
+<script>
+    var txtInput = document.querySelector('#txtInput')
+    var voiceList = document.querySelector('#voiceList')
+    var btnSpeak = document.querySelector('#btnSpeak')
+    var synth = window.speechSynthesis;
+    var teste = document.querySelector('#teste')
+    var voices = []
+
+    // NewVoices()
+
+    // if(speechSynthesis !== undefined) {
+    //     speechSynthesis.onvoiceschanged = NewVoices
+    // }
+    
+    btnSpeak.addEventListener('click', () => {
+        valor = teste.innerText
+        palavras = valor.split('.')
+        console.log(palavras)
+        palavras.forEach(palavra => {
+            var toSpeak = new SpeechSynthesisUtterance(palavra)
+    
+            // var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name')s
+            // console.log()
+            // voices.forEach((voice) => {
+            //     if(voice.name === selectedVoiceName) {
+            //         toSpeak.voice = voice
+            //     }
+            // })
+            toSpeak.lang = 'pt-BR';
+            synth.speak(toSpeak);
+        });
+        
+    })
+
+    // function NewVoices() {
+    //     voices = synth.getVoices()
+    //     var selectedIndex = voiceList.selectedIndex < 0 ? 0 : voiceList.selectedIndex
+    //     voiceList.innerHTML = ''
+    //     voices.forEach((voice) => {
+    //         var listItem = document.createElement('option')
+    //         listItem.textContent = voice.name
+    //         listItem.setAttribute('data-lang', voice.lang)
+    //         listItem.setAttribute('data-name', voice.name)
+
+    //         console.log(voice.lang)
+
+    //         voiceList.appendChild(listItem)
+    //     })
+
+    //     voiceList.selectedIndex = selectedIndex
+    // }
+</script>
